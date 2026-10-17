@@ -499,11 +499,21 @@
     return parseVer(remote) > parseVer(local);
   }
 
-  function goDownload() {
-    if (latestData && latestData.download) {
-      window.open(latestData.download, '_blank');
-    }
-  }
+ function goDownload() {
+  if (!latestData || !latestData.download) return;
+  fetch(latestData.download + '?t=' + Date.now())
+    .then(r => { if (!r.ok) throw new Error('download failed'); return r.blob(); })
+    .then(blob => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'MK.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    })
+    .catch(() => window.open(latestData.download, '_blank'));
+}
 
   function dismissBanner() {
     document.getElementById('update-banner').classList.remove('show');
