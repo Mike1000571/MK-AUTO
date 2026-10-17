@@ -1,6 +1,15 @@
 {
   "version": "1.2",
+  "download": "{
+  "version": "1.2",
   "download": "https://YOUR_DOWNLOAD_LINK_HERE/MK.html",
+  "notes": [
+    "50+ games added",
+    "Auto-updater added",
+    "Halloween decorations",
+    "Bug fixes"
+  ]
+}",
   "notes": [
     "50+ games added",
     "Auto-updater added",
