@@ -499,10 +499,10 @@
     return parseVer(remote) > parseVer(local);
   }
 
- function goDownload() {
-  if (!latestData || !latestData.download) return;
+function goDownload() {
+  if (!latestData || !latestData.download) { alert('No download link'); return; }
   fetch(latestData.download + '?t=' + Date.now())
-    .then(r => { if (!r.ok) throw new Error('download failed'); return r.blob(); })
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.blob(); })
     .then(blob => {
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -510,11 +510,12 @@
       document.body.appendChild(a);
       a.click();
       a.remove();
-      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
     })
-    .catch(() => window.open(latestData.download, '_blank'));
+    .catch(err => {
+      console.error(err);
+      alert('Download failed: ' + err.message);
+    });
 }
-
   function dismissBanner() {
     document.getElementById('update-banner').classList.remove('show');
     sessionStorage.setItem('mk_banner_dismissed', '1');
