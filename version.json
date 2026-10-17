@@ -1,15 +1,6 @@
 {
   "version": "1.3",
-  "download": "{
-  "version": "1.3",
-  "download": "https://raw.githubusercontent.com/Mike1000571/MK-AUTO/main/version.json",
-  "notes": [
-    "50+ games added",
-    "Auto-updater added",
-    "Halloween decorations",
-    "Bug fixes"
-  ]
-}",
+  "download": "https://github.com/Mike1000571/MK-AUTO/raw/main/MK.html",
   "notes": [
     "50+ games added",
     "Auto-updater added",
